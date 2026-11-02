@@ -8,7 +8,7 @@ import tailwindcss from '@tailwindcss/vite';
 // site 改为真实域名，删除 base（例如 site: 'https://landing.example.com'）
 export default defineConfig({
     site: 'https://handsometaoa.github.io',
-    base: '/LandingPageWeb',
+    base: '/landing-pages',
     trailingSlash: 'ignore',
     integrations: [mdx(), sitemap()],
     vite: {
