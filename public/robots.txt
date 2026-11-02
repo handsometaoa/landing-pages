@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# 上线前把域名替换为真实站点域名
-Sitemap: https://example.com/sitemap-index.xml
+Sitemap: https://handsometaoa.github.io/LandingPageWeb/sitemap-index.xml

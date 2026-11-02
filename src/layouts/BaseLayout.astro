@@ -1,6 +1,7 @@
 ---
 // Phosphor 图标字体：从 JS 引入，让 Vite 正确打包字体文件
 import '@phosphor-icons/web/regular';
+import { withBase } from '../lib/site';
 
 interface Props {
     title: string;
@@ -15,8 +16,8 @@ interface Props {
 
 const { title, description, pathname, ogImage, jsonLd } = Astro.props;
 
-const canonical = new URL(pathname, Astro.site);
-const ogImageAbs = new URL(ogImage ?? '/favicon.svg', Astro.site);
+const canonical = new URL(withBase(pathname), Astro.site);
+const ogImageAbs = new URL(withBase(ogImage ?? '/favicon.svg'), Astro.site);
 ---
 
 <!doctype html>
@@ -27,8 +28,8 @@ const ogImageAbs = new URL(ogImage ?? '/favicon.svg', Astro.site);
         <title>{title}</title>
         <meta name="description" content={description} />
         <link rel="canonical" href={canonical} />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="sitemap" href="/sitemap-index.xml" />
+        <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+        <link rel="sitemap" href={withBase('/sitemap-index.xml')} />
         <meta name="theme-color" content="#0a0a0c" />
         <meta name="generator" content={Astro.generator} />
 

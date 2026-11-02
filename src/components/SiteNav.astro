@@ -1,5 +1,5 @@
 ---
-import { site } from '../lib/site';
+import { site, withBase } from '../lib/site';
 
 interface AnchorItem {
     label: string;
@@ -27,7 +27,7 @@ const { mode, productName, anchors = [], download } = Astro.props;
             {
                 mode === 'product' && (
                     <a
-                        href="/"
+                        href={withBase('/')}
                         class="inline-flex shrink-0 items-center gap-1.5 text-sm text-zinc-400 transition-colors hover:text-zinc-100"
                     >
                         <i class="ph ph-arrow-left text-base" aria-hidden="true" />
@@ -47,7 +47,7 @@ const { mode, productName, anchors = [], download } = Astro.props;
             }
             {
                 mode === 'site' && (
-                    <a href="/" class="text-base font-semibold tracking-tight text-white">
+                    <a href={withBase('/')} class="text-base font-semibold tracking-tight text-white">
                         {site.name}
                     </a>
                 )

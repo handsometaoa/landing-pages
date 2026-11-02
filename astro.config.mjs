@@ -4,9 +4,12 @@ import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
+// GitHub Pages 项目页部署；绑定自定义域名时：
+// site 改为真实域名，删除 base（例如 site: 'https://landing.example.com'）
 export default defineConfig({
-    // TODO: 正式上线前替换为真实域名（影响 sitemap / canonical / og:url）
-    site: 'https://example.com',
+    site: 'https://handsometaoa.github.io',
+    base: '/LandingPageWeb',
+    trailingSlash: 'ignore',
     integrations: [mdx(), sitemap()],
     vite: {
         plugins: [tailwindcss()],

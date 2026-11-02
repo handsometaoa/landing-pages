@@ -1,5 +1,6 @@
 import type { ImageMetadata } from 'astro';
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { withBase } from './site';
 
 /** 产品素材图注册表：key 为 "<slug>/<文件名>"，值是构建期优化的图片元数据 */
 const imageFiles = import.meta.glob<{ default: ImageMetadata }>(
@@ -33,5 +34,5 @@ export async function getLiveProducts(): Promise<CollectionEntry<'products'>[]> 
 }
 
 export function productPath(slug: string): string {
-    return `/p/${slug}/`;
+    return withBase(`/p/${slug}/`);
 }
