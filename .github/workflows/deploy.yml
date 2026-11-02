@@ -11,6 +11,8 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  # 允许清理同 run 的残留制品（409 修复用）
+  actions: write
 
 # 同一时间只跑一次部署，新推送取消旧的
 concurrency:
@@ -39,11 +41,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${{ github.run_id }}/artifacts" \
-            --jq '.artifacts[] | select(.name == "github-pages") | .id' \
-          | while read -r id; do
-              gh api -X DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}" && echo "removed artifact ${id}"
-            done
+          ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${{ github.run_id }}/artifacts" --jq '.artifacts[] | select(.name == "github-pages") | .id' 2>/dev/null || true)
+          for id in $ids; do
+            gh api -X DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}" && echo "removed artifact ${id}" || echo "skip ${id} (cleanup failed, continuing)"
+          done
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
