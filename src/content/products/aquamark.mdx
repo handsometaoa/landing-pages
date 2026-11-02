@@ -1,0 +1,111 @@
+---
+name: AquaMark
+tagline: 域名动态网页水印
+description: AquaMark 是一个按域名动态为网页铺水印的浏览器扩展：自定义内容、颜色、深浅与密度，实时生效，用于防截图外泄与测试环境区分，Chrome / Edge 均可使用。
+status: live
+order: 2
+version: 1.2.0
+platform:
+    - Chrome
+    - Edge
+theme:
+    accent: '#4d8dff'
+    surface: dark
+links:
+    download: https://github.com/handsometaoa/AquaMark/releases/latest
+    repo: https://github.com/handsometaoa/AquaMark
+icon: icon.png
+ogImage: og.jpg
+sections:
+    - type: hero
+      headline: 给网页铺上一层水印
+      sub: 按域名动态生效的浏览器扩展，给内部系统和测试环境铺上定制水印，截图外传可溯源。
+      primaryCta:
+          label: 下载扩展
+          href: https://github.com/handsometaoa/AquaMark/releases/latest
+          external: true
+      secondaryCta:
+          label: 查看源码
+          href: https://github.com/handsometaoa/AquaMark
+          external: true
+      image: hero.png
+
+    - type: features
+      title: 定制度足够高，渲染足够稳
+      items:
+          - icon: drop
+            title: 按域名动态生效
+            desc: 添加 example.com 即覆盖全部子域名，多条规则命中时取列表第一条。
+          - icon: palette
+            title: 水印完全可定制
+            desc: 内容、8 色板与自定义取色、深浅 1~100%、密度 1~10 档、角度 ±90°、字号 10~48px。
+          - icon: lightning
+            title: 改动实时生效
+            desc: 弹窗里改动任何配置，已打开的网页立即刷新水印，无需刷新页面。
+          - icon: eye
+            title: 三态站点卡片
+            desc: 未配置、生效中、未生效三种状态一目了然，编辑抽屉内所见即所得。
+          - icon: database
+            title: 规则可备份
+            desc: JSON 一键导入导出，按域名去重合并；有改动未备份时，导出按钮亮橙色圆点提醒。
+            tint: true
+          - icon: shield-check
+            title: 稳健渲染
+            desc: Shadow DOM 隔离并覆盖最高层级，不拦截页面操作；节点被删 1.2 秒内自愈，SPA 切换域名自动重匹配。
+
+    - type: details
+      title: 为团队协作设计
+      groups:
+          - heading: 水印定制
+            items:
+                - label: 颜色
+                  value: 8 色板 + 自定义
+                - label: 深浅与密度
+                  value: 1~100%、1~10 档
+                - label: 角度与字号
+                  value: ±90°、10~48px
+          - heading: 规则管理
+            items:
+                - label: 匹配
+                  value: 子域名自动覆盖
+                - label: 备份
+                  value: JSON 导入导出
+                - label: 提醒
+                  value: 未备份亮橙点
+          - heading: 渲染保障
+            items:
+                - label: 隔离
+                  value: Shadow DOM 最高层级
+                - label: 自愈
+                  value: 被删 1.2 秒内重建
+                - label: 适配
+                  value: SPA 切换自动重匹配
+
+    - type: faq
+      title: 常见问题
+      items:
+          - q: 水印会影响网页操作吗？
+            a: 不会。水印层不拦截任何点击、输入和滚动，页面交互完全正常。
+          - q: 网站把水印层删了怎么办？
+            a: 内容脚本每 1.2 秒自检一次，节点被移除会自动重建；配合 Shadow DOM 与最高层级覆盖，普通样式也无法把它盖住。
+          - q: 换电脑或重装后规则怎么恢复？
+            a: 卸载扩展会清空数据。只要之前导出过 JSON，重装后导入该文件即可完整恢复。
+          - q: example.com 会匹配 www.example.com 吗？
+            a: 会，所有子域名自动匹配；但不会误伤 evil-example.com 这类伪造域名。
+
+    - type: download
+      title: 给每一次截图留下出处
+      sub: 轻量浏览器扩展，Chrome / Edge 均可使用。
+      primaryCta:
+          label: 下载扩展安装包
+          href: https://github.com/handsometaoa/AquaMark/releases/latest
+          external: true
+      secondaryCta:
+          label: GitHub 仓库
+          href: https://github.com/handsometaoa/AquaMark
+          external: true
+      notes:
+          - 下载 zip 解压后，在 chrome://extensions 开启开发者模式加载，无需 Node 环境。
+          - 卸载扩展会清除全部规则，卸载前请先导出备份。
+          - 水印是视觉威慑手段，敏感场景请配合权限系统等手段使用。
+---

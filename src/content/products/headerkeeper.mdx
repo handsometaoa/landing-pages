@@ -1,0 +1,117 @@
+---
+name: HeaderKeeper
+tagline: 泳道 Header 注入助手
+description: HeaderKeeper 是面向泳道测试与多需求并行开发的浏览器扩展：按域名匹配系统，引用共享需求库，弹窗一键切换重写请求 Header，支持过期时间与冲突提醒。
+status: live
+order: 3
+version: 2.0.2
+platform:
+    - Chrome
+    - Edge
+theme:
+    accent: '#4d8dff'
+    surface: dark
+links:
+    download: https://github.com/handsometaoa/HeaderKeeper/releases/latest
+    repo: https://github.com/handsometaoa/HeaderKeeper
+icon: icon.png
+ogImage: og.jpg
+sections:
+    - type: hero
+      headline: 泳道切换，一键完成
+      sub: 按域名匹配系统、引用共享需求库，弹窗里点选即重写请求 Header，适配泳道测试、灰度发布与多需求并行。
+      primaryCta:
+          label: 下载扩展
+          href: https://github.com/handsometaoa/HeaderKeeper/releases/latest
+          external: true
+      secondaryCta:
+          label: 查看源码
+          href: https://github.com/handsometaoa/HeaderKeeper
+          external: true
+      image: popup.png
+
+    - type: showcase
+      title: 系统与需求，各管一层
+      caption: 系统按域名匹配（支持 *.example.com 通配，命中本域及全部子域名），引用共享需求库中的需求；一个需求可被多个系统复用，改一处全局同步。
+      image: options.png
+      alt: HeaderKeeper 的系统与需求管理页面
+
+    - type: features
+      title: 为并行开发而生
+      items:
+          - icon: funnel
+            title: 系统按域名匹配
+            desc: 支持 *.example.com 通配，命中本域及全部子域名，每个系统引用自己的需求。
+          - icon: books
+            title: 共享需求库
+            desc: 一个需求可被多个系统复用，修改一处全局同步，告别复制粘贴。
+          - icon: arrows-left-right
+            title: 一键切换
+            desc: 弹窗点选即整体应用，再点取消；总开关一键关闭全部注入，角标显示当前站点生效数。
+          - icon: clock-countdown
+            title: 过期时间
+            desc: 需求可设过期时间，到期自动停止注入并从弹窗隐藏，默认只展示未过期需求。
+          - icon: warning
+            title: 冲突提醒
+            desc: 多个系统注入同一 Header、或需求内重复 Key 时弹窗提示；重复 Key 注入时保留最后一个。
+            tint: true
+          - icon: file-js
+            title: 灵活导入
+            desc: 标准 JSON 直接导入；也可以写一段 JS 在隔离沙箱中转换任意格式，解析代码可保存复用。
+
+    - type: details
+      title: 注入机制与使用细节
+      groups:
+          - heading: 注入机制
+            items:
+                - label: 引擎
+                  value: declarativeNetRequest
+                - label: 生效
+                  value: 自动保存，即时生效
+                - label: 验证
+                  value: httpbin.org/headers
+          - heading: 配置管理
+            items:
+                - label: 迁移
+                  value: 含解析代码整体导入导出
+                - label: 界面
+                  value: 中英双语
+                - label: 主题
+                  value: 浅色、深色、跟随系统
+          - heading: 安全边界
+            items:
+                - label: 权限
+                  value: 需 host 全站权限
+                - label: 用途
+                  value: 本地与内网测试
+                - label: 分发
+                  value: 未上架应用商店
+
+    - type: faq
+      title: 常见问题
+      items:
+          - q: 如何验证注入真的生效了？
+            a: DNR 注入的 Header 在 DevTools 的 Network 面板不一定可见，建议访问 httpbin.org/headers 查看服务端实际收到的请求头。
+          - q: 多个系统命中同一域名怎么办？
+            a: 靠下的系统覆盖靠上的，弹窗的冲突提醒会明确指出；同一需求内重复 Key 注入时保留最后一个。
+          - q: 旧版配置还能用吗？
+            a: 旧版 schemes 结构不做迁移：首次加载会自动备份到本地后重置，重新按系统与需求组织即可。
+          - q: 支持 Firefox 吗？
+            a: 支持 Firefox 113+（npm run build:firefox 构建）；日常使用建议从 Releases 下载 Chrome 版。
+
+    - type: download
+      title: 把泳道切换变成一次点击
+      sub: 开源（MIT），面向本地与内网测试场景。
+      primaryCta:
+          label: 下载扩展安装包
+          href: https://github.com/handsometaoa/HeaderKeeper/releases/latest
+          external: true
+      secondaryCta:
+          label: GitHub 仓库
+          href: https://github.com/handsometaoa/HeaderKeeper
+          external: true
+      notes:
+          - 下载 chrome.zip 解压后，在扩展管理页开启开发者模式加载。
+          - DNR 注入的 Header 不一定能在 DevTools 中看到，可用 httpbin.org/headers 验证。
+          - 欢迎在 GitHub 提 Issue 反馈问题与建议。
+---
