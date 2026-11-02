@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+---
+
+<BaseLayout title="页面不存在" description="访问的页面不存在" pathname="/404">
+    <SiteNav mode="site" />
+    <main class="mx-auto flex max-w-6xl flex-col items-start px-4 py-32 sm:px-6">
+        <h1 class="text-4xl font-bold tracking-tight text-white md:text-5xl">404</h1>
+        <p class="mt-4 text-zinc-400">这个页面不存在，可能已被移动或删除。</p>
+        <a
+            href="/"
+            class="mt-8 inline-flex h-11 items-center rounded-full bg-accent-strong px-6 text-sm font-medium text-white transition hover:bg-accent"
+        >
+            返回首页
+        </a>
+    </main>
+</BaseLayout>

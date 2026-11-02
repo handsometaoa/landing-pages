@@ -1,0 +1,90 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import SiteNav from '../../components/SiteNav.astro';
+import SiteFooter from '../../components/SiteFooter.astro';
+import Hero from '../../components/sections/Hero.astro';
+import Showcase from '../../components/sections/Showcase.astro';
+import Features from '../../components/sections/Features.astro';
+import Details from '../../components/sections/Details.astro';
+import Faq from '../../components/sections/Faq.astro';
+import DownloadCta from '../../components/sections/DownloadCta.astro';
+import { getLiveProducts } from '../../lib/products';
+import { site } from '../../lib/site';
+
+export async function getStaticPaths() {
+    const products = await getLiveProducts();
+    return products.map((product) => ({
+        params: { slug: product.id },
+        props: { product },
+    }));
+}
+
+interface Props {
+    product: CollectionEntry<'products'>;
+}
+
+const { product } = Astro.props;
+const { name, tagline, description, version, platform, links, ogImage, sections } =
+    product.data;
+
+const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name,
+    description,
+    ...(version ? { softwareVersion: version } : {}),
+    applicationCategory: 'ProductivityApplication',
+    ...(platform.length > 0 ? { operatingSystem: platform.join(', ') } : {}),
+    author: { '@type': 'Person', name: site.name },
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'CNY' },
+    ...(links.download ? { downloadUrl: links.download } : {}),
+};
+
+const anchors = [
+    ...(sections.some((s) => s.type === 'features')
+        ? [{ label: '功能', href: '#features' }]
+        : []),
+    ...(sections.some((s) => s.type === 'details')
+        ? [{ label: '细节', href: '#details' }]
+        : []),
+    ...(sections.some((s) => s.type === 'faq') ? [{ label: '常见问题', href: '#faq' }] : []),
+];
+
+const allProducts = await getLiveProducts();
+---
+
+<BaseLayout
+    title={`${name} · ${tagline}`}
+    description={description}
+    pathname={`/p/${product.id}/`}
+    ogImage={ogImage ? `/products/${product.id}/${ogImage}` : undefined}
+    jsonLd={jsonLd}
+>
+    <SiteNav
+        mode="product"
+        productName={name}
+        anchors={anchors}
+        download={links.download ? { label: '下载', href: links.download, external: true } : undefined}
+    />
+    <main>
+        {
+            sections.map((section) =>
+                section.type === 'hero' ? (
+                    <Hero section={section} product={product} />
+                ) : section.type === 'showcase' ? (
+                    <Showcase section={section} product={product} />
+                ) : section.type === 'features' ? (
+                    <Features section={section} />
+                ) : section.type === 'details' ? (
+                    <Details section={section} />
+                ) : section.type === 'faq' ? (
+                    <Faq section={section} />
+                ) : (
+                    <DownloadCta section={section} />
+                )
+            )
+        }
+    </main>
+    <SiteFooter products={allProducts} />
+</BaseLayout>

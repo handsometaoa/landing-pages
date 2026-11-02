@@ -1,0 +1,38 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type Product = CollectionEntry<'products'>;
+type Section = NonNullable<Product['data']['sections'][number]>;
+type FaqSection = Extract<Section, { type: 'faq' }>;
+
+interface Props {
+    section: FaqSection;
+}
+
+const { section } = Astro.props;
+const { title, items } = section;
+---
+
+<section id="faq" class="scroll-mt-24 py-16 md:py-24">
+    <div class="mx-auto max-w-3xl px-4 sm:px-6">
+        <h2 class="text-3xl font-bold tracking-tight text-white md:text-4xl" data-reveal>
+            {title}
+        </h2>
+        <div class="mt-8" data-reveal>
+            {
+                items.map((item) => (
+                    <details class="group border-b border-line">
+                        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 py-5 text-left text-base font-medium text-zinc-100 transition-colors hover:text-white [&::-webkit-details-marker]:hidden">
+                            {item.q}
+                            <i
+                                class="ph ph-plus shrink-0 text-zinc-500 transition-transform duration-300 group-open:rotate-45"
+                                aria-hidden="true"
+                            />
+                        </summary>
+                        <p class="pb-5 text-sm leading-relaxed text-zinc-400">{item.a}</p>
+                    </details>
+                ))
+            }
+        </div>
+    </div>
+</section>

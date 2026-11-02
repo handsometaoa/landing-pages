@@ -1,0 +1,18 @@
+# 构建产物
+dist/
+.astro/
+
+# 依赖
+node_modules/
+
+# 环境与日志
+.env
+.env.*
+*.log
+npm-debug.log*
+
+# 编辑器
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

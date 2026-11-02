@@ -1,0 +1,43 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { getLiveProducts } from '../lib/products';
+import { site } from '../lib/site';
+
+const products = await getLiveProducts();
+---
+
+<BaseLayout title={`${site.name} · 产品集合`} description={site.description} pathname="/">
+    <SiteNav mode="site" />
+    <main>
+        <section class="mx-auto max-w-6xl px-4 pt-20 pb-14 sm:px-6 md:pt-28">
+            <h1
+                class="rise max-w-[24ch] text-4xl leading-[1.15] font-bold tracking-tight text-white md:text-5xl"
+                style="--rise-delay: 0ms"
+            >
+                {site.tagline}
+            </h1>
+            <p
+                class="rise mt-5 max-w-[52ch] leading-relaxed text-zinc-400"
+                style="--rise-delay: 90ms"
+            >
+                {site.description}
+            </p>
+        </section>
+
+        <section class="mx-auto max-w-6xl px-4 pb-20 sm:px-6 md:pb-28" aria-label="产品列表">
+            <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                {
+                    products.map((product, i) => (
+                        <div data-reveal style={`--reveal-delay: ${i * 70}ms`}>
+                            <ProductCard product={product} />
+                        </div>
+                    ))
+                }
+            </div>
+        </section>
+    </main>
+    <SiteFooter products={products} />
+</BaseLayout>

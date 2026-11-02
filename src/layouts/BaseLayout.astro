@@ -1,0 +1,76 @@
+---
+// Phosphor 图标字体：从 JS 引入，让 Vite 正确打包字体文件
+import '@phosphor-icons/web/regular';
+
+interface Props {
+    title: string;
+    description: string;
+    /** 站内绝对路径，如 /p/minimal-todo/ */
+    pathname: string;
+    /** og:image 的 public 路径，如 /products/minimal-todo/logo.png */
+    ogImage?: string;
+    /** JSON-LD 结构化数据 */
+    jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, pathname, ogImage, jsonLd } = Astro.props;
+
+const canonical = new URL(pathname, Astro.site);
+const ogImageAbs = new URL(ogImage ?? '/favicon.svg', Astro.site);
+---
+
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <link rel="canonical" href={canonical} />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="sitemap" href="/sitemap-index.xml" />
+        <meta name="theme-color" content="#0a0a0c" />
+        <meta name="generator" content={Astro.generator} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="handsometaoa" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={ogImageAbs} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={ogImageAbs} />
+
+        {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+
+        <script>
+            // 滚动显现：IntersectionObserver（不监听 scroll 事件），尊重系统减弱动效设置
+            const els = document.querySelectorAll('[data-reveal]');
+            if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                els.forEach((el) => el.classList.add('is-in'));
+            } else {
+                const io = new IntersectionObserver(
+                    (entries) => {
+                        for (const entry of entries) {
+                            if (entry.isIntersecting) {
+                                entry.target.classList.add('is-in');
+                                io.unobserve(entry.target);
+                            }
+                        }
+                    },
+                    { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+                );
+                els.forEach((el) => io.observe(el));
+            }
+        </script>
+    </head>
+    <body class="min-h-dvh">
+        <slot />
+    </body>
+</html>
+
+<style is:global>
+    @import '../styles/global.css';
+</style>

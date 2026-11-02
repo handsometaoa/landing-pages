@@ -1,0 +1,48 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+type Product = CollectionEntry<'products'>;
+type Section = NonNullable<Product['data']['sections'][number]>;
+type DetailsSection = Extract<Section, { type: 'details' }>;
+
+interface Props {
+    section: DetailsSection;
+}
+
+const { section } = Astro.props;
+const { title, groups } = section;
+---
+
+<section id="details" class="scroll-mt-24 py-16 md:py-24">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <h2
+            class="max-w-[52ch] text-3xl font-bold tracking-tight text-white md:text-4xl"
+            data-reveal
+        >
+            {title}
+        </h2>
+        <div class="mt-12 grid gap-x-12 gap-y-10 md:grid-cols-3">
+            {
+                groups.map((group, i) => (
+                    <div data-reveal style={`--reveal-delay: ${i * 80}ms`}>
+                        <h3 class="text-sm font-semibold tracking-wide text-accent">
+                            {group.heading}
+                        </h3>
+                        <dl class="mt-3">
+                            {group.items.map((item) => (
+                                <div class="flex items-baseline justify-between gap-4 border-t border-line py-3">
+                                    <dt class="shrink-0 text-sm text-zinc-500">
+                                        {item.label}
+                                    </dt>
+                                    <dd class="text-right text-sm text-zinc-200">
+                                        {item.value}
+                                    </dd>
+                                </div>
+                            ))}
+                        </dl>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import type { CollectionEntry } from 'astro:content';
+import { productImage } from '../../lib/products';
+
+type Product = CollectionEntry<'products'>;
+type Section = NonNullable<Product['data']['sections'][number]>;
+type ShowcaseSection = Extract<Section, { type: 'showcase' }>;
+
+interface Props {
+    section: ShowcaseSection;
+    product: Product;
+}
+
+const { section, product } = Astro.props;
+const { title, caption, image, alt } = section;
+---
+
+<section id="showcase" class="scroll-mt-24 py-16 md:py-24">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6">
+        <div class="max-w-[52ch]" data-reveal>
+            <h2 class="text-3xl font-bold tracking-tight text-white md:text-4xl">
+                {title}
+            </h2>
+            {caption && <p class="mt-4 leading-relaxed text-zinc-400">{caption}</p>}
+        </div>
+        <figure class="mt-10" data-reveal>
+            <div class="rounded-2xl border border-line bg-surface-1 p-2 shadow-2xl shadow-black/40">
+                <Image
+                    src={productImage(product.id, image)}
+                    alt={alt ?? title}
+                    widths={[640, 960, 1280, 1920]}
+                    sizes="(min-width: 1152px) 1088px, 100vw"
+                    class="h-auto w-full rounded-xl"
+                    loading="lazy"
+                />
+            </div>
+        </figure>
+    </div>
+</section>
