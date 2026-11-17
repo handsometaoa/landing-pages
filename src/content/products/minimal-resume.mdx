@@ -1,7 +1,7 @@
 ---
 name: 极简历
 tagline: 可视化多页简历制作
-description: 极简历是在线多页简历制作工具：多套模板、可视化工作台、实时预览与多页排版，浏览器打印或导出 PDF，数据保存在本地浏览器。
+description: 极简历是在线多页简历制作工具：模板卡片直选、可视化工作台与 A4 真实尺寸多页排版，浏览器打印或导出 PDF，支持深浅界面外观，数据保存在本地浏览器。
 status: live
 order: 5
 platform:
@@ -18,7 +18,7 @@ ogImage: og.jpg
 sections:
     - type: hero
       headline: 做一份极简的多页简历
-      sub: 在线简历制作工具：多套模板、可视化工作台、实时预览与多页排版，浏览器打印或导出 PDF，数据保存在本地。
+      sub: 在线简历制作工具：模板卡片直选、可视化工作台与 A4 多页排版，浏览器打印或导出 PDF，数据保存在本地。
       primaryCta:
           label: 立即在线使用
           href: https://handsometaoa.github.io/minimal-resume/
@@ -32,9 +32,9 @@ sections:
 
     - type: showcase
       title: 多套模板，选一个就开始
-      caption: 点击模板卡片即可带着当前风格进入工作台；模板只是起点，颜色、密度、行距和头像样式后续都能继续微调。
+      caption: 首页模板卡片直选，点击即带模板进入工作台；模板只是起点，主题色、密度、行距与头像样式都能继续微调。
       image: showcase.png
-      alt: 极简历的模板选择页面
+      alt: 极简历首页的模板直选区
 
     - type: features
       title: 编辑能力都长在工作台上
@@ -43,20 +43,20 @@ sections:
             title: 中英双语
             desc: 中文 / 英文一键切换，同一套工作台完成两种语言的简历。
           - icon: layout-template
-            title: 多套预设模板
-            desc: 商务、技术、管理等场景各有覆盖，选定后仍可微调颜色、密度、行距与头像样式。
+            title: 模板卡片直选
+            desc: 六套主题风格在首页直接点选，进入工作台后仍可微调颜色、密度、行距与头像样式。
           - icon: pencil-simple-line
             title: 可视化工作台
-            desc: 表单式编辑面板搭配 A4 实时预览，所见即所得。
+            desc: 模块展开折叠、显示隐藏、顺序调整，内置模块之外还能添加自定义模块；编辑与预览双向联动定位。
+          - icon: moon-stars
+            title: 深浅外观
+            desc: 界面支持浅色、深色、跟随系统三种模式，简历纸面样式独立于界面，深色下依然保持纸白。
           - icon: markdown-logo
             title: Markdown 长文本
             desc: 简介、职责描述支持 Markdown，标题、列表、粗体、斜体、链接与换行自动套用排版。
-          - icon: sliders
-            title: 模块随心组织
-            desc: 展开折叠、显示隐藏、顺序调整，内置模块之外还能添加自定义模块。
           - icon: printer
             title: 多页预览与导出
-            desc: A4 自动分页、页码标注，浏览器打印或导出 PDF，成品与预览一致。
+            desc: A4 真实尺寸自动分页，跨页自动补齐模块栏与经历标题；导出 PDF 自动处理背景色块，免手动勾选。
             tint: true
 
     - type: details
@@ -65,27 +65,27 @@ sections:
           - heading: 编辑与预览
             items:
                 - label: 预览
-                  value: A4 多页自动分页
-                - label: 模块
-                  value: 折叠、隐藏、排序
-                - label: 头像
-                  value: 本地上传
+                  value: A4 真实尺寸多页
+                - label: 联动
+                  value: 编辑预览双向定位
+                - label: 微调
+                  value: 颜色、密度、行距、头像
           - heading: 数据与隐私
             items:
                 - label: 存储
                   value: 浏览器本地持久化
                 - label: 网络
                   value: 静态页面，无后端
-                - label: 示例
-                  value: 一键载入示例数据
+                - label: 纸面
+                  value: 深色模式保持纸白
           - heading: 输出
             items:
                 - label: 导出
                   value: 浏览器打印 / PDF
-                - label: 页码
-                  value: 多页自动标注
-                - label: 语言
-                  value: 中文 / 英文
+                - label: 跨页
+                  value: 自动补齐模块栏与标题
+                - label: 提醒
+                  value: 打印设置弹窗指引
 
     - type: faq
       title: 常见问题
@@ -95,7 +95,9 @@ sections:
           - q: 支持英文简历吗？
             a: 支持中文 / 英文切换，同一套工作台和模板都能用于两种语言。
           - q: 如何导出 PDF？
-            a: 在工作台右上角点「导出 PDF」，或用浏览器打印另存为 PDF。多页排版与页码已经排好，导出后无需再手动调整。
+            a: 在工作台右上角点「导出 PDF」，按弹窗提醒设置打印选项（勾选背景图形、边距选「无」）即可。多页排版与页码已自动排好，无需手动调整。
+          - q: 深色模式会改变简历的颜色吗？
+            a: 不会。界面支持浅色、深色、跟随系统切换，简历纸面样式独立于界面外观，始终按纸白效果排版与打印。
           - q: 可以商用或二次分发吗？
             a: 不可以。项目以 UNLICENSED 方式发布，仅授权个人学习、研究与内部参考，商用、二次分发与修改后再发布均被禁止，详见仓库 LICENSE.md。
 
@@ -113,6 +115,6 @@ sections:
           external: true
       notes:
           - 数据保存在浏览器本地，不上传服务器。
-          - 内置示例数据，一键载入后替换成自己的内容即可。
+          - 在微信等内嵌浏览器里导出可能空白，复制链接到系统浏览器打开即可。
           - 仅授权个人学习、研究与内部参考使用，商用与再分发需另行授权。
 ---
