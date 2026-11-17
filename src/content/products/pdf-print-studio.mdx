@@ -1,7 +1,7 @@
 ---
 name: PDF 打印排版工作台
 tagline: 浏览器本地 PDF 排版打印工具
-description: 在浏览器本地把多份 PDF 课件按单页、2合1、4合1 排版到打印纸上：章节合并、页面排序删除、奇数章补空白页，一键生成双面打印就绪的 PDF。文件全程不上传服务器。
+description: 在浏览器本地把多份 PDF 课件排版到打印纸上：单页、2合1、4合1 与小册子拼版，空白页去除、页码范围提取、裁白边等页面处理，一键生成双面打印就绪的 PDF。文件全程不上传服务器。
 status: live
 order: 4
 platform:
@@ -18,7 +18,7 @@ ogImage: og.jpg
 sections:
     - type: hero
       headline: 把课件排进打印纸
-      sub: 浏览器本地排版工具：单页、2合1、4合1，章节合并与双面打印就绪，文件全程不出浏览器。
+      sub: 浏览器本地排版工具：单页、2合1、4合1 与小册子拼版，章节合并、页面处理与双面打印就绪，文件全程不出浏览器。
       primaryCta:
           label: 立即在线使用
           href: https://handsometaoa.github.io/PDFLayoutEditor/
@@ -32,7 +32,7 @@ sections:
 
     - type: showcase
       title: 生成之前，先看到成品
-      caption: 生成后逐页预览，标注章节起始页，多文件输出可切换；页码与斜向水印直接铺进成品，配合内置打印指引，一次打对。
+      caption: 生成后逐页预览，标注章节起始页，多文件输出可切换；页码与斜向水印直接铺进成品，双面打印一次打对。
       image: showcase.png
       alt: PDF 打印排版工作台的成品预览界面
 
@@ -40,56 +40,58 @@ sections:
       title: 排版细节都替你想好了
       items:
           - icon: columns
-            title: 三种排版模式
-            desc: 单页、2合1、4合1 任选，纸张方向自动选择，页面自动旋转 90° 最大化填充格子。
-          - icon: stack
-            title: 章节合并
-            desc: 多份 PDF 按顺序合并为一个文件，或各章单独输出；奇数章自动补空白页，保证每章从纸张正面开始。
+            title: 四种排版模式
+            desc: 单页、2合1、4合1 与小册子拼版：对折装订页序自动重排、补位至 4 的倍数，自动横向并强制双面。
+          - icon: magic-wand
+            title: 页面处理
+            desc: 一键检测并去除空白页，按页码范围提取（如 1-20, 25），扫描件自动检测内容框裁白边。
           - icon: hand-grabbing
             title: 页面管理
-            desc: 缩略图网格中点选删除、恢复，拖拽或键盘排序，页码自动递补。
+            desc: 点击缩略图放大预览，方向键切换、Delete 删除或恢复；拖拽或键盘排序，页码自动递补。
+          - icon: stack
+            title: 章节合并
+            desc: 多份 PDF 按顺序合并为一个文件，或各章单独输出；双面模式下每章自动从纸张正面开始，一张纸不混两章。
           - icon: stamp
             title: 页码与水印
             desc: 每格右下角标注章节内页码；自定义文字水印斜向半透明铺满整页，支持中文。
           - icon: eye
-            title: 即时排版预览
-            desc: 设置变化实时反映到第一张成品的排布，与生成共用同一套几何计算，预览即所得。
-          - icon: printer
-            title: 双面打印就绪
-            desc: 内置打印指引：短边翻转、实际大小 100%、方向自动，一次打对不浪费纸。
+            title: 即时预览与记忆
+            desc: 设置变化实时反映到第一张成品的排布，预览即所得；设置自动记忆，关闭页面再打开仍保留上次选择。
             tint: true
 
     - type: details
       title: 本地处理，画质不打折
       groups:
-          - heading: 隐私与性能
+          - heading: 排版与输出
             items:
-                - label: 处理位置
-                  value: 浏览器内，Web Worker
-                - label: 网络请求
-                  value: 零上传
-                - label: 预览渲染
-                  value: pdf.js 离线可用
-          - heading: 排版引擎
-            items:
-                - label: 引擎
-                  value: pdf-lib 矢量排版
-                - label: 画质
-                  value: 矢量直出，不降画质
-                - label: 体积优化
-                  value: 资源跨页共享
-          - heading: 输出控制
-            items:
+                - label: 模式
+                  value: 单页 / 2合1 / 4合1 / 小册子
                 - label: 纸张
-                  value: 标准 A4 或跟随源比例
-                - label: 边距
-                  value: 页边距与格距可调
-                - label: 页码
-                  value: 章节内页码自动标注
+                  value: 标准 A4
+                - label: 方向
+                  value: 整体旋转，自动适配
+          - heading: 页面处理
+            items:
+                - label: 空白页
+                  value: 一键检测去除
+                - label: 范围
+                  value: 页码范围提取
+                - label: 白边
+                  value: 扫描件自动裁切
+          - heading: 引擎与隐私
+            items:
+                - label: 处理
+                  value: 浏览器内，Web Worker
+                - label: 画质
+                  value: pdf-lib 矢量直出
+                - label: 体积
+                  value: 资源跨页共享
 
     - type: faq
       title: 常见问题
       items:
+          - q: 小册子模式怎么用？
+            a: 排版模式选「小册子」：页序自动重排并补位到 4 的倍数，纸张自动横向、强制双面打印。打印后逐张对折、按页序叠放并沿折线装订即为成册。
           - q: 文件会被上传吗？
             a: 不会。所有处理都在浏览器内完成，排版在 Web Worker 中执行，PDF 文件不经过任何网络请求。
           - q: 画质会下降吗？
