@@ -25,7 +25,7 @@ interface Props {
 }
 
 const { product } = Astro.props;
-const { name, tagline, description, version, platform, links, ogImage, sections } =
+const { name, tagline, description, version, platform, links, ogImage, navCtaLabel, sections } =
     product.data;
 
 const jsonLd = {
@@ -65,7 +65,11 @@ const allProducts = await getLiveProducts();
         mode="product"
         productName={name}
         anchors={anchors}
-        download={links.download ? { label: '下载', href: links.download, external: true } : undefined}
+        download={
+            links.download
+                ? { label: navCtaLabel ?? '下载', href: links.download, external: true }
+                : undefined
+        }
     />
     <main>
         {

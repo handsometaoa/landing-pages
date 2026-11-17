@@ -37,7 +37,10 @@ const { title, sub, primaryCta, secondaryCta, notes } = section;
                         {...(primaryCta.external ? { target: '_blank', rel: 'noopener' } : {})}
                         class="inline-flex h-12 items-center gap-2 rounded-full bg-accent-strong px-7 text-base font-medium text-white transition hover:bg-accent active:scale-[0.98]"
                     >
-                        <i class="ph ph-download-simple text-lg" aria-hidden="true"></i>
+                        <i
+                            class={`ph ph-${primaryCta.icon ?? 'download-simple'} text-lg`}
+                            aria-hidden="true"
+                        />
                         {primaryCta.label}
                     </a>
                     {

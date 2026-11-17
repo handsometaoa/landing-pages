@@ -55,7 +55,10 @@ const imgSrc = img;
                         {...(primaryCta.external ? { target: '_blank', rel: 'noopener' } : {})}
                         class="inline-flex h-12 items-center gap-2 rounded-full bg-accent-strong px-6 text-base font-medium text-white transition hover:bg-accent active:scale-[0.98]"
                     >
-                        <i class="ph ph-download-simple text-lg" aria-hidden="true" />
+                        <i
+                            class={`ph ph-${primaryCta.icon ?? 'download-simple'} text-lg`}
+                            aria-hidden="true"
+                        />
                         {primaryCta.label}
                     </a>
                     {secondaryCta && (
@@ -115,7 +118,10 @@ const imgSrc = img;
                                 : {})}
                             class="inline-flex h-12 items-center gap-2 rounded-full bg-accent-strong px-6 text-base font-medium text-white transition hover:bg-accent active:scale-[0.98]"
                         >
-                            <i class="ph ph-download-simple text-lg" aria-hidden="true" />
+                            <i
+                                class={`ph ph-${primaryCta.icon ?? 'download-simple'} text-lg`}
+                                aria-hidden="true"
+                            />
                             {primaryCta.label}
                         </a>
                         {secondaryCta && (

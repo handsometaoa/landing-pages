@@ -1,0 +1,118 @@
+---
+name: PDF 打印排版工作台
+tagline: 浏览器本地 PDF 排版打印工具
+description: 在浏览器本地把多份 PDF 课件按单页、2合1、4合1 排版到打印纸上：章节合并、页面排序删除、奇数章补空白页，一键生成双面打印就绪的 PDF。文件全程不上传服务器。
+status: live
+order: 4
+platform:
+    - Web
+theme:
+    accent: '#4d8dff'
+    surface: dark
+links:
+    download: https://handsometaoa.github.io/PDFLayoutEditor/
+    repo: https://github.com/handsometaoa/PDFLayoutEditor
+navCtaLabel: 在线使用
+icon: icon.png
+ogImage: og.jpg
+sections:
+    - type: hero
+      headline: 把课件排进打印纸
+      sub: 浏览器本地排版工具：单页、2合1、4合1，章节合并与双面打印就绪，文件全程不出浏览器。
+      primaryCta:
+          label: 立即在线使用
+          href: https://handsometaoa.github.io/PDFLayoutEditor/
+          external: true
+          icon: globe
+      secondaryCta:
+          label: 查看源码
+          href: https://github.com/handsometaoa/PDFLayoutEditor
+          external: true
+      image: hero.png
+
+    - type: showcase
+      title: 生成之前，先看到成品
+      caption: 生成后逐页预览，标注章节起始页，多文件输出可切换；页码与斜向水印直接铺进成品，配合内置打印指引，一次打对。
+      image: showcase.png
+      alt: PDF 打印排版工作台的成品预览界面
+
+    - type: features
+      title: 排版细节都替你想好了
+      items:
+          - icon: columns
+            title: 三种排版模式
+            desc: 单页、2合1、4合1 任选，纸张方向自动选择，页面自动旋转 90° 最大化填充格子。
+          - icon: stack
+            title: 章节合并
+            desc: 多份 PDF 按顺序合并为一个文件，或各章单独输出；奇数章自动补空白页，保证每章从纸张正面开始。
+          - icon: hand-grabbing
+            title: 页面管理
+            desc: 缩略图网格中点选删除、恢复，拖拽或键盘排序，页码自动递补。
+          - icon: stamp
+            title: 页码与水印
+            desc: 每格右下角标注章节内页码；自定义文字水印斜向半透明铺满整页，支持中文。
+          - icon: eye
+            title: 即时排版预览
+            desc: 设置变化实时反映到第一张成品的排布，与生成共用同一套几何计算，预览即所得。
+          - icon: printer
+            title: 双面打印就绪
+            desc: 内置打印指引：短边翻转、实际大小 100%、方向自动，一次打对不浪费纸。
+            tint: true
+
+    - type: details
+      title: 本地处理，画质不打折
+      groups:
+          - heading: 隐私与性能
+            items:
+                - label: 处理位置
+                  value: 浏览器内，Web Worker
+                - label: 网络请求
+                  value: 零上传
+                - label: 预览渲染
+                  value: pdf.js 离线可用
+          - heading: 排版引擎
+            items:
+                - label: 引擎
+                  value: pdf-lib 矢量排版
+                - label: 画质
+                  value: 矢量直出，不降画质
+                - label: 体积优化
+                  value: 资源跨页共享
+          - heading: 输出控制
+            items:
+                - label: 纸张
+                  value: 标准 A4 或跟随源比例
+                - label: 边距
+                  value: 页边距与格距可调
+                - label: 页码
+                  value: 章节内页码自动标注
+
+    - type: faq
+      title: 常见问题
+      items:
+          - q: 文件会被上传吗？
+            a: 不会。所有处理都在浏览器内完成，排版在 Web Worker 中执行，PDF 文件不经过任何网络请求。
+          - q: 画质会下降吗？
+            a: 排版用 pdf-lib 矢量直出，不降画质；字体、图片等资源跨页共享，输出体积也更小（实测 82 MB 降到 14 MB）。
+          - q: 双面打印怎么设置？
+            a: 选择短边翻转（横向页面用长边翻转会导致背面颠倒），缩放选实际大小 100%，不要再选每张多页。
+          - q: 加密的 PDF 能处理吗？
+            a: 工具会检测加密文档并提示，请先解除密码限制再导入。
+
+    - type: download
+      title: 现在就打开试试
+      sub: 纯静态网页应用，无需安装，拖入 PDF 即可排版。
+      primaryCta:
+          label: 立即在线使用
+          href: https://handsometaoa.github.io/PDFLayoutEditor/
+          external: true
+          icon: globe
+      secondaryCta:
+          label: GitHub 仓库
+          href: https://github.com/handsometaoa/PDFLayoutEditor
+          external: true
+      notes:
+          - 全程浏览器本地处理，文件不上传任何服务器。
+          - 建议使用 Chrome、Edge 等现代浏览器打开。
+          - 构建产物为纯静态站点，也可自行部署到任意静态托管。
+---

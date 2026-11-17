@@ -14,6 +14,8 @@ const cta = z.object({
     href: z.string(),
     /** 站外链接（新窗口打开） */
     external: z.boolean().default(false),
+    /** Phosphor 图标名，默认 download-simple（Web 应用可改为 globe 等） */
+    icon: z.string().optional(),
 });
 
 const products = defineCollection({
@@ -50,6 +52,8 @@ const products = defineCollection({
         icon: z.string().optional(),
         /** og:image 文件名，位于 public/products/<slug>/ 下 */
         ogImage: z.string().optional(),
+        /** 顶部导航 CTA 文案，默认「下载」（Web 应用可改为「在线使用」等） */
+        navCtaLabel: z.string().optional(),
         sections: z
             .array(
                 z.discriminatedUnion('type', [
