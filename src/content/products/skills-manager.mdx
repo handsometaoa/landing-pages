@@ -1,0 +1,129 @@
+---
+name: Skills Manager
+tagline: 多工具 Skill 集中管理台
+description: 面向 Claude Code、Codex、ZCode、Cursor 等 8 个工具的本地 Skill 管理桌面应用：中央仓库集中收藏，按需复制安装到不同工具，支持已发现扫描、内容浏览编辑、回收站与安装回滚，数据全程留在本机。
+status: live
+order: 6
+version: 2.0.0
+platform:
+    - Windows
+    - macOS
+theme:
+    accent: '#4d8dff'
+    surface: dark
+links:
+    download: https://github.com/handsometaoa/skills-manager/releases/latest
+    repo: https://github.com/handsometaoa/skills-manager
+icon: icon.png
+ogImage: og.jpg
+sections:
+    - type: hero
+      headline: 把散落各处的 Skill 收进一个仓库
+      sub: 本地 Skill 管理桌面应用：集中收藏到中央仓库，按需复制安装到 Claude Code、Codex、ZCode、Cursor 等 8 个工具；已发现扫描、内容浏览编辑、回收站与回滚，数据全程留在本机。
+      primaryCta:
+          label: 下载最新版本
+          href: https://github.com/handsometaoa/skills-manager/releases/latest
+          external: true
+      secondaryCta:
+          label: 查看源码
+          href: https://github.com/handsometaoa/skills-manager
+          external: true
+      image: hero.png
+
+    - type: showcase
+      title: 先看清楚，再装进去
+      caption: Markdown 预览、带行号的语法高亮源码与 IDEA 式文件树并列切换，装进任何工具之前，先把内容读明白。
+      image: viewer.png
+      alt: Skills Manager 的技能查看器界面
+
+    - type: features
+      title: 收录、安装与保护，一站做完
+      items:
+          - icon: database
+            title: 中央仓库
+            desc: 从本地目录、公开 Git 仓库或工具现有目录收录独立副本；一键创建含分节骨架的 SKILL 模板目录，创建即可安装。
+          - icon: arrows-left-right
+            title: 复制安装到 8 个工具
+            desc: 仓库里勾选目标工具批量安装，或进工具页从仓库挑选；安装前检查全部已扫描目录，同名 Skill 阻止重复安装、绝不覆盖。
+          - icon: funnel
+            title: 适用范围标记
+            desc: 标记为通用或同时勾选多个工具，安装列表按范围筛选；从工具页收录已有 Skill 也不会移动或修改原文件。
+          - icon: markdown-logo
+            title: 浏览与编辑
+            desc: Markdown 预览与语法高亮源码并列，IDEA 式文件树展示完整结构；编辑模式直接改文件，Ctrl+S 原子写回磁盘。
+          - icon: shield-check
+            title: 文件保护
+            desc: 安装失败自动回滚；删除进入应用回收站，保留来源与原路径，可还原或永久删除，还原冲突会明确提示。
+          - icon: palette
+            title: 主题与目录可调
+            desc: 外观跟随系统、明亮或黑暗即时切换；中央仓库可迁移到网盘等任意空文件夹，每个工具可覆盖扫描目录或整体停用。
+            tint: true
+
+    - type: showcase
+      title: 目录、主题与仓库位置，都能按习惯来
+      caption: 每个工具可覆盖默认技能目录（同时是安装目标）或添加附加发现目录；停用某个 Agent 后它从导航与安装目标中消失，重新启用即恢复。
+      image: settings.png
+      alt: Skills Manager 的设置界面
+
+    - type: details
+      title: 独立副本，本机存放
+      groups:
+          - heading: 支持与平台
+            items:
+                - label: 接入工具
+                  value: Claude Code、Codex、ZCode、Cursor、Qoder、OpenCode、Gemini CLI、GitHub Copilot
+                - label: 平台
+                  value: Windows / macOS
+                - label: 技术栈
+                  value: Electron + React + TypeScript
+          - heading: 数据与安全
+            items:
+                - label: 安装方式
+                  value: 复制安装，独立副本
+                - label: 同名冲突
+                  value: 安装前全目录检查，阻止覆盖
+                - label: 删除
+                  value: 应用回收站，可还原
+                - label: 安装失败
+                  value: 自动回滚
+          - heading: 来源与更新
+            items:
+                - label: 收录来源
+                  value: 本地目录 / 公开 Git 仓库 / 工具目录
+                - label: Git 导入
+                  value: 公开 HTTPS 仓库，需系统 Git
+                - label: 更新
+                  value: 内置自动更新（GitHub Releases）
+
+    - type: faq
+      title: 常见问题
+      items:
+          - q: 支持哪些工具？
+            a: 目前覆盖 Claude Code、Codex、ZCode、Cursor、Qoder、OpenCode、Gemini CLI 和 GitHub Copilot 的用户级技能目录，并额外扫描部分工具的兼容目录（如 Cursor 会读取 ~/.agents/skills）。
+          - q: 安装会移动或覆盖我的文件吗？
+            a: 不会。中央仓库与工具目录是独立副本，安装是纯复制；安装前会检查目标工具能发现的全部已扫描目录，发现同名 Skill 时阻止重复安装。
+          - q: 多个工具能共用一份 Skill 吗？
+            a: 可以。共享目录中的文件只有一份，会同时出现在多个工具页面；卸载或删除时会列出所有读取此目录的工具，执行后这些工具都会失去这份发现结果，其他目录中的独立副本保留。
+          - q: 误删了还能找回吗？
+            a: 能。删除进入应用回收站，保留删除时间、来源与原路径，可还原到原位置；安装失败也会自动回滚，不影响原文件。
+          - q: 仓库能放网盘同步目录吗？
+            a: 可以。设置里可把中央仓库迁移到任意空文件夹（例如网盘同步目录），现有内容自动搬运，其他工具的共享目录发现路径也会跟随更新。
+          - q: macOS 可以用吗？
+            a: 提供 macOS 打包配置，当前开发验证在 Windows 上完成，macOS 仍需实机验证，建议以 GitHub Releases 的发布说明为准。
+
+    - type: download
+      title: 把 Skill 管理这件事变简单
+      sub: Windows 与 macOS 安装包从 GitHub Releases 下载，内置自动更新，开箱即用。
+      primaryCta:
+          label: 下载最新版本
+          href: https://github.com/handsometaoa/skills-manager/releases/latest
+          external: true
+      secondaryCta:
+          label: GitHub 仓库
+          href: https://github.com/handsometaoa/skills-manager
+          external: true
+      notes:
+          - 中央仓库与工具目录为独立副本，不会自动同步。
+          - Git 导入仅支持公开 HTTPS 仓库，需要系统已安装 Git。
+          - 适用范围是用户标记，不代表内容已在对应工具中验证运行。
+---
