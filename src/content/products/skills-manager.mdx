@@ -1,10 +1,10 @@
 ---
 name: Skills Manager
 tagline: 多工具 Skill 集中管理台
-description: 面向 Claude Code、Codex、ZCode、Cursor 等 8 个工具的本地 Skill 管理桌面应用：中央仓库集中收藏，按需复制安装到不同工具，支持已发现扫描、内容浏览编辑、回收站与安装回滚，数据全程留在本机。
+description: 面向 Claude Code、Codex、ZCode、Cursor 等 8 个工具的本地 Skill 管理桌面应用：中央仓库集中收藏，复制安装到各工具与项目，修订后一键下发更新，支持项目级管理、内容浏览编辑、回收站与安装回滚，数据全程留在本机。
 status: live
 order: 6
-version: 2.0.0
+version: 2.0.4
 platform:
     - Windows
     - macOS
@@ -19,7 +19,7 @@ ogImage: og.jpg
 sections:
     - type: hero
       headline: 把散落各处的 Skill 收进一个仓库
-      sub: 本地 Skill 管理桌面应用：集中收藏到中央仓库，按需复制安装到 Claude Code、Codex、ZCode、Cursor 等 8 个工具；已发现扫描、内容浏览编辑、回收站与回滚，数据全程留在本机。
+      sub: 本地 Skill 管理桌面应用：集中收藏到中央仓库，按需复制安装到 Claude Code、Codex、ZCode、Cursor 等 8 个工具与项目目录；仓库内容修订后一键下发更新，项目级管理、回收站与回滚齐备，数据全程留在本机。
       primaryCta:
           label: 下载最新版本
           href: https://github.com/handsometaoa/skills-manager/releases/latest
@@ -45,6 +45,12 @@ sections:
           - icon: arrows-left-right
             title: 复制安装到 8 个工具
             desc: 仓库里勾选目标工具批量安装，或进工具页从仓库挑选；安装前检查全部已扫描目录，同名 Skill 阻止重复安装、绝不覆盖。
+          - icon: arrows-clockwise
+            title: 一键下发更新
+            desc: 仓库内容修订后，一键覆盖同步到所有安装过该 Skill 的目录；已同步的副本按哈希比对自动跳过，失败时用备份回滚。
+          - icon: folder-open
+            title: 项目级管理
+            desc: 添加项目文件夹，扫描、查看、编辑、收录、删除项目内各 Agent 目录的 Skill；经仓库安装的项目 Skill 可一键从仓库更新。
           - icon: funnel
             title: 适用范围标记
             desc: 标记为通用或同时勾选多个工具，安装列表按范围筛选；从工具页收录已有 Skill 也不会移动或修改原文件。
@@ -73,7 +79,7 @@ sections:
                 - label: 接入工具
                   value: Claude Code、Codex、ZCode、Cursor、Qoder、OpenCode、Gemini CLI、GitHub Copilot
                 - label: 平台
-                  value: Windows / macOS
+                  value: Windows（NSIS 安装包）/ macOS（DMG，x64 与 arm64）
                 - label: 技术栈
                   value: Electron + React + TypeScript
           - heading: 数据与安全
@@ -82,6 +88,8 @@ sections:
                   value: 复制安装，独立副本
                 - label: 同名冲突
                   value: 安装前全目录检查，阻止覆盖
+                - label: 下发更新
+                  value: 哈希比对跳过已同步，失败备份回滚
                 - label: 删除
                   value: 应用回收站，可还原
                 - label: 安装失败
@@ -89,9 +97,11 @@ sections:
           - heading: 来源与更新
             items:
                 - label: 收录来源
-                  value: 本地目录 / 公开 Git 仓库 / 工具目录
+                  value: 本地目录 / 公开 Git 仓库 / 工具目录 / 项目目录
                 - label: Git 导入
                   value: 公开 HTTPS 仓库，需系统 Git
+                - label: 自动发现
+                  value: 最多四层子目录，单次最多 200 个 Skill
                 - label: 更新
                   value: 内置自动更新（GitHub Releases）
 
@@ -100,8 +110,12 @@ sections:
       items:
           - q: 支持哪些工具？
             a: 目前覆盖 Claude Code、Codex、ZCode、Cursor、Qoder、OpenCode、Gemini CLI 和 GitHub Copilot 的用户级技能目录，并额外扫描部分工具的兼容目录（如 Cursor 会读取 ~/.agents/skills）。
+          - q: 仓库内容更新后，工具里的副本会自动同步吗？
+            a: 不会自动同步，避免意外覆盖。在仓库条目菜单点击「下发更新到工具」，即可覆盖同步所有安装过该 Skill 的目录——已同步副本按哈希比对自动跳过，失败时用备份回滚；项目里经仓库安装的 Skill 也支持一键从仓库更新。
           - q: 安装会移动或覆盖我的文件吗？
             a: 不会。中央仓库与工具目录是独立副本，安装是纯复制；安装前会检查目标工具能发现的全部已扫描目录，发现同名 Skill 时阻止重复安装。
+          - q: 支持管理项目内的 Skill 吗？
+            a: 支持。把项目文件夹添加进应用后，可扫描、查看、编辑、收录、删除项目内各 Agent 目录的 Skill，也能从仓库安装或更新；项目级目录支持除 ZCode 外的 7 个工具（ZCode 官方暂未定义项目级目录）。
           - q: 多个工具能共用一份 Skill 吗？
             a: 可以。共享目录中的文件只有一份，会同时出现在多个工具页面；卸载或删除时会列出所有读取此目录的工具，执行后这些工具都会失去这份发现结果，其他目录中的独立副本保留。
           - q: 误删了还能找回吗？
@@ -109,7 +123,7 @@ sections:
           - q: 仓库能放网盘同步目录吗？
             a: 可以。设置里可把中央仓库迁移到任意空文件夹（例如网盘同步目录），现有内容自动搬运，其他工具的共享目录发现路径也会跟随更新。
           - q: macOS 可以用吗？
-            a: 提供 macOS 打包配置，当前开发验证在 Windows 上完成，macOS 仍需实机验证，建议以 GitHub Releases 的发布说明为准。
+            a: 可以。提供 macOS DMG 安装包（x64 与 arm64），与 Windows 版一起由发布流程自动构建；因未做签名与公证，首次打开若提示「应用已损坏」，按 README 中的 xattr 命令移除 quarantine 标记即可。
 
     - type: download
       title: 把 Skill 管理这件事变简单
@@ -123,7 +137,8 @@ sections:
           href: https://github.com/handsometaoa/skills-manager
           external: true
       notes:
-          - 中央仓库与工具目录为独立副本，不会自动同步。
+          - 中央仓库与工具目录为独立副本，不会自动同步，可用一键下发更新。
           - Git 导入仅支持公开 HTTPS 仓库，需要系统已安装 Git。
           - 适用范围是用户标记，不代表内容已在对应工具中验证运行。
+          - macOS 安装包未签名公证，首次打开若提示「应用已损坏」，按 README 移除 quarantine 标记。
 ---
